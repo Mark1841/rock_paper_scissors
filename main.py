@@ -3,13 +3,6 @@ from random import choice
 
 Weapon = Enum("Weapon", "Rock, Paper, Scissors, Lizard, Spock")
 
-# Add a list attribute to each weapon of the weapons it can beat
-Weapon.Rock.beats = [Weapon.Scissors, Weapon.Lizard]
-Weapon.Paper.beats = [Weapon.Spock, Weapon.Rock]
-Weapon.Scissors.beats = [Weapon.Paper, Weapon.Lizard]
-Weapon.Lizard.beats = [Weapon.Spock, Weapon.Paper]
-Weapon.Spock.beats = [Weapon.Scissors, Weapon.Rock]
-
 # Add an dictionary attribute to each weapon of the action verbs it is capable of
 Weapon.Rock.actions = {Weapon.Scissors: "blunts", Weapon.Lizard: "crushes"}
 Weapon.Paper.actions = {Weapon.Spock: "disproves", Weapon.Rock: "covers"}
@@ -107,7 +100,7 @@ while True:
     if human.weapon == ai.weapon:
         print(f"You chose {human.weapon.name} and the computer chose {ai.weapon.name}")
         print("It was a DRAW\n")
-    elif ai.weapon in human.weapon.beats:
+    elif ai.weapon in human.weapon.actions:
         human.display_results(ai, "You WIN\n")
         human.win()
     else:
